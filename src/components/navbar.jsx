@@ -95,10 +95,13 @@ export default function Navbar() {
           <div
             className="
               hidden md:flex items-center justify-center
-              fixed top-6 right-8  /* keep consistent padding */
-              bg-white rounded-full p-3 shadow-lg
-              transition-all duration-500 ease-out z-50
+              fixed top-6
+              bg-white rounded-full p-3 shadow-lg z-50
+              transition-[right] duration-500 ease-out   /* ✅ smooth slide to right */
             "
+            style={{
+              right: "32px", // exact 32px gap from viewport right edge
+            }}
           >
             <button
               onClick={() => setOpen(!open)}
@@ -109,21 +112,18 @@ export default function Navbar() {
             </button>
 
             {/* Progress Ring */}
-            <svg
-              className="absolute inset-0 w-full h-full"
-              viewBox="0 0 36 36"
-            >
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36">
               <circle
                 className="text-gray-300"
                 stroke="currentColor"
                 fill="transparent"
-                strokeWidth="2"
+                strokeWidth="0"
                 cx="18"
                 cy="18"
                 r="16"
               />
               <circle
-                className="text-[#FD2E35] transition-all duration-200"
+                className="text-[#FD2E35] transition-all duration-300"
                 stroke="currentColor"
                 fill="transparent"
                 strokeWidth="2"
