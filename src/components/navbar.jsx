@@ -47,31 +47,28 @@ export default function Navbar() {
                   href={`#${link.id}`}
                   onClick={() => setActiveLink(link.id)}
                   className={`
-                    relative transition-colors duration-200
-                    ${isSpecial ? "text-[#FD2E35]" : "text-[#221429]"}
-                    ${!isSpecial && "hover:text-[#FD2E35]"}
-                  `}
+          relative transition-colors duration-200
+          ${isSpecial ? "text-[#FD2E35]" : "text-[#221429]"}
+          ${!isSpecial && "hover:text-[#FD2E35]"}
+        `}
                 >
                   {link.label}
 
                   {/* Underline */}
                   <span
                     className={`
-                      absolute bottom-[-5px] left-0 h-[2.5px] rounded-full transition-all duration-300
-                      ${!isSpecial && isActive ? "group-hover:w-full" : ""}
-                    `}
+            absolute bottom-[-5px] left-0 h-[2px] rounded-full
+            transition-all duration-300
+            ${isSpecial ? "bg-[#FD2E35] w-[50%] group-hover:w-full" : ""}
+            ${
+              !isSpecial && isActive
+                ? "bg-[#221429] w-[50%] group-hover:w-full group-hover:bg-[#FD2E35]"
+                : ""
+            }
+          `}
                     style={{
-                      width: isSpecial
-                        ? "50%" // Let’s Talk default
-                        : isActive
-                        ? "50%" // Selected normal link
-                        : "0%",  // Default no line
                       transformOrigin: isSpecial ? "left" : "center",
-                      backgroundColor: isSpecial
-                        ? "#FD2E35" // Let’s Talk always FD2E35
-                        : isActive
-                        ? "#221429" // Selected normal link underline same as text
-                        : "transparent",
+                      width: !isSpecial && !isActive ? "0%" : undefined,
                     }}
                   />
                 </a>
@@ -79,15 +76,14 @@ export default function Navbar() {
             );
           })}
 
-
-
           {/* Hamburger inside the same row */}
           <li
             className={`
               flex items-center justify-center transition-all duration-300
-              ${scrolled
-                ? "fixed top-4 right-4 bg-white rounded-full p-3 shadow-lg z-50"
-                : "relative"
+              ${
+                scrolled
+                  ? "fixed top-4 right-4 bg-white rounded-full p-3 shadow-lg z-50"
+                  : "relative"
               }
             `}
           >
