@@ -8,7 +8,7 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeLink, setActiveLink] = useState("");
 
-  // Track scroll for navbar state and progress ring
+  // Track scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -37,12 +37,10 @@ export default function Navbar() {
 
         {/* ===== Desktop Links + Hamburger ===== */}
         <div className="hidden md:flex items-center">
-          {/* Nav Links */}
           <ul className="flex items-center gap-12 text-[14px] font-medium">
             {links.map((link) => {
               const isActive = activeLink === link.id;
               const isSpecial = link.special;
-
               return (
                 <li key={link.id} className="relative group">
                   <a
@@ -55,17 +53,12 @@ export default function Navbar() {
                     `}
                   >
                     {link.label}
-                    {/* Underline */}
                     <span
                       className={`
                         absolute bottom-[-5px] left-0 h-[2px] rounded-full
                         transition-all duration-300
                         ${isSpecial ? "bg-[#FD2E35] w-[50%] group-hover:w-full" : ""}
-                        ${
-                          !isSpecial && isActive
-                            ? "bg-[#221429] w-[50%] group-hover:w-full group-hover:bg-[#FD2E35]"
-                            : ""
-                        }
+                        ${!isSpecial && isActive ? "bg-[#221429] w-[50%] group-hover:w-full group-hover:bg-[#FD2E35]" : ""}
                       `}
                       style={{
                         transformOrigin: isSpecial ? "left" : "center",
@@ -78,31 +71,62 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* Inline Hamburger with slightly reduced gap */}
+          {/* Desktop Hamburger (inline, only shows when nav is visible) */}
           {!scrolled && (
             <button
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
-              className="ml-6 relative z-10" // smaller than gap-12
+              className="ml-6 relative z-10"
             >
               <img src={Hamburger} alt="Menu" className="h-6 w-6" />
             </button>
           )}
+
+          {/* Desktop Floating Hamburger on scroll */}
+          {scrolled && (
+            <div
+              className="fixed top-6 right-8 z-50 flex items-center justify-center
+                         bg-white rounded-full p-3 shadow-lg transition-[right] duration-500 ease-out md:flex hidden"
+            >
+              <button
+                onClick={() => setOpen(!open)}
+                aria-label="Toggle menu"
+                className="relative z-10"
+              >
+                <img src={Hamburger} alt="Menu" className="h-6 w-6" />
+              </button>
+
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r={16}
+                  stroke="#E5E7EB"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r={16}
+                  stroke="#FD2E35"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  fill="none"
+                  transform="rotate(-90 18 18)"
+                  strokeDasharray={`${2 * Math.PI * 16} ${2 * Math.PI * 16}`}
+                  strokeDashoffset={`${(1 - scrollProgress / 100) * 2 * Math.PI * 16}`}
+                  className="transition-[stroke-dashoffset] duration-150 linear"
+                />
+              </svg>
+            </div>
+          )}
         </div>
 
-        {/* ===== Floating Fixed Hamburger (on scroll) ===== */}
-        {scrolled && (
-          <div
-            className="
-              hidden md:flex items-center justify-center
-              fixed top-6
-              bg-white rounded-full p-3 shadow-lg z-50
-              transition-[right] duration-500 ease-out   /* ✅ smooth slide to right */
-            "
-            style={{
-              right: "32px", // exact 32px gap from viewport right edge
-            }}
-          >
+        {/* ===== Mobile & Tablet Hamburger ===== */}
+        <div className="md:hidden">
+          {!scrolled ? (
+            // Top of page: normal hamburger icon
             <button
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
@@ -110,42 +134,46 @@ export default function Navbar() {
             >
               <img src={Hamburger} alt="Menu" className="h-6 w-6" />
             </button>
+          ) : (
+            // Scroll: rounded fixed hamburger with progress ring
+            <div
+              className="fixed top-6 right-6 z-50 flex items-center justify-center
+                         bg-white rounded-full p-3 shadow-lg transition-all duration-500 ease-out"
+            >
+              <button
+                onClick={() => setOpen(!open)}
+                aria-label="Toggle menu"
+                className="relative z-10"
+              >
+                <img src={Hamburger} alt="Menu" className="h-6 w-6" />
+              </button>
 
-            {/* Progress Ring */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36">
-              <circle
-                className="text-gray-300"
-                stroke="currentColor"
-                fill="transparent"
-                strokeWidth="0"
-                cx="18"
-                cy="18"
-                r="16"
-              />
-              <circle
-                className="text-[#FD2E35] transition-all duration-300"
-                stroke="currentColor"
-                fill="transparent"
-                strokeWidth="2"
-                strokeLinecap="round"
-                cx="18"
-                cy="18"
-                r="16"
-                strokeDasharray={`${(scrollProgress / 100) * (2 * Math.PI * 16)} ${2 * Math.PI * 16}`}
-                transform="rotate(-90 18 18)"
-              />
-            </svg>
-          </div>
-        )}
-
-        {/* ===== Mobile Hamburger ===== */}
-        {!scrolled && (
-          <div className="md:hidden">
-            <button onClick={() => setOpen(!open)} aria-label="Toggle menu">
-              <img src={Hamburger} alt="Menu" className="h-6 w-6" />
-            </button>
-          </div>
-        )}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 36 36">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r={16}
+                  stroke="#E5E7EB"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r={16}
+                  stroke="#FD2E35"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  fill="none"
+                  transform="rotate(-90 18 18)"
+                  strokeDasharray={`${2 * Math.PI * 16} ${2 * Math.PI * 16}`}
+                  strokeDashoffset={`${(1 - scrollProgress / 100) * 2 * Math.PI * 16}`}
+                  className="transition-[stroke-dashoffset] duration-150 linear"
+                />
+              </svg>
+            </div>
+          )}
+        </div>
 
         {/* ===== Mobile Dropdown ===== */}
         {open && (
