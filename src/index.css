@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.app-wrapper {
-  @apply rounded-xl bg-[#FAFAFA] min-h-screen mx-auto p-4;
-  border: 20px solid white; /* instead of border-8 */
+body {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  color: #221429;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
