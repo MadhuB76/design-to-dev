@@ -6,14 +6,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeLink, setActiveLink] = useState(""); // No link selected on home page
+  const [activeLink, setActiveLink] = useState("");
 
-  // Track scroll
+  // Track scroll for navbar state and progress ring
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.scrollHeight - window.innerHeight;
-      setScrolled(scrollTop > 50); // threshold for navbar
+      setScrolled(scrollTop > 50);
       setScrollProgress((scrollTop / docHeight) * 100);
     };
     window.addEventListener("scroll", handleScroll);
@@ -35,75 +35,110 @@ export default function Navbar() {
           <img src={logo} alt="Logo" className="h-10 w-auto" />
         </a>
 
-        {/* Links + Hamburger */}
-        <ul className="hidden md:flex items-center gap-12 text-[14px] font-medium">
-          {links.map((link) => {
-            const isActive = activeLink === link.id;
-            const isSpecial = link.special;
+        {/* ===== Desktop Links + Hamburger ===== */}
+        <div className="hidden md:flex items-center">
+          {/* Nav Links */}
+          <ul className="flex items-center gap-12 text-[14px] font-medium">
+            {links.map((link) => {
+              const isActive = activeLink === link.id;
+              const isSpecial = link.special;
 
-            return (
-              <li key={link.id} className="relative group">
-                <a
-                  href={`#${link.id}`}
-                  onClick={() => setActiveLink(link.id)}
-                  className={`
-          relative transition-colors duration-200
-          ${isSpecial ? "text-[#FD2E35]" : "text-[#221429]"}
-          ${!isSpecial && "hover:text-[#FD2E35]"}
-        `}
-                >
-                  {link.label}
-
-                  {/* Underline */}
-                  <span
+              return (
+                <li key={link.id} className="relative group">
+                  <a
+                    href={`#${link.id}`}
+                    onClick={() => setActiveLink(link.id)}
                     className={`
-            absolute bottom-[-5px] left-0 h-[2px] rounded-full
-            transition-all duration-300
-            ${isSpecial ? "bg-[#FD2E35] w-[50%] group-hover:w-full" : ""}
-            ${
-              !isSpecial && isActive
-                ? "bg-[#221429] w-[50%] group-hover:w-full group-hover:bg-[#FD2E35]"
-                : ""
-            }
-          `}
-                    style={{
-                      transformOrigin: isSpecial ? "left" : "center",
-                      width: !isSpecial && !isActive ? "0%" : undefined,
-                    }}
-                  />
-                </a>
-              </li>
-            );
-          })}
+                      relative transition-colors duration-200
+                      ${isSpecial ? "text-[#FD2E35]" : "text-[#221429]"}
+                      ${!isSpecial && "hover:text-[#FD2E35]"}
+                    `}
+                  >
+                    {link.label}
+                    {/* Underline */}
+                    <span
+                      className={`
+                        absolute bottom-[-5px] left-0 h-[2px] rounded-full
+                        transition-all duration-300
+                        ${isSpecial ? "bg-[#FD2E35] w-[50%] group-hover:w-full" : ""}
+                        ${
+                          !isSpecial && isActive
+                            ? "bg-[#221429] w-[50%] group-hover:w-full group-hover:bg-[#FD2E35]"
+                            : ""
+                        }
+                      `}
+                      style={{
+                        transformOrigin: isSpecial ? "left" : "center",
+                        width: !isSpecial && !isActive ? "0%" : undefined,
+                      }}
+                    />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
-          {/* Hamburger inside the same row */}
-          <li
-            className={`
-              flex items-center justify-center transition-all duration-300
-              ${
-                scrolled
-                  ? "fixed top-4 right-4 bg-white rounded-full p-3 shadow-lg z-50"
-                  : "relative"
-              }
-            `}
+          {/* Inline Hamburger with slightly reduced gap */}
+          {!scrolled && (
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+              className="ml-6 relative z-10" // smaller than gap-12
+            >
+              <img src={Hamburger} alt="Menu" className="h-6 w-6" />
+            </button>
+          )}
+        </div>
+
+        {/* ===== Floating Fixed Hamburger (on scroll) ===== */}
+        {scrolled && (
+          <div
+            className="
+              hidden md:flex items-center justify-center
+              fixed top-6 right-8  /* keep consistent padding */
+              bg-white rounded-full p-3 shadow-lg
+              transition-all duration-500 ease-out z-50
+            "
           >
-            <button onClick={() => setOpen(!open)} aria-label="Toggle menu">
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+              className="relative z-10"
+            >
               <img src={Hamburger} alt="Menu" className="h-6 w-6" />
             </button>
 
-            {/* Scroll progress circle */}
-            {scrolled && (
-              <div
-                className="absolute inset-0 rounded-full border-2 border-gray-300"
-                style={{
-                  background: `conic-gradient(#FF0000 ${scrollProgress}%, transparent ${scrollProgress}%)`,
-                }}
+            {/* Progress Ring */}
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 36 36"
+            >
+              <circle
+                className="text-gray-300"
+                stroke="currentColor"
+                fill="transparent"
+                strokeWidth="2"
+                cx="18"
+                cy="18"
+                r="16"
               />
-            )}
-          </li>
-        </ul>
+              <circle
+                className="text-[#FD2E35] transition-all duration-200"
+                stroke="currentColor"
+                fill="transparent"
+                strokeWidth="2"
+                strokeLinecap="round"
+                cx="18"
+                cy="18"
+                r="16"
+                strokeDasharray={`${(scrollProgress / 100) * (2 * Math.PI * 16)} ${2 * Math.PI * 16}`}
+                transform="rotate(-90 18 18)"
+              />
+            </svg>
+          </div>
+        )}
 
-        {/* Mobile Hamburger */}
+        {/* ===== Mobile Hamburger ===== */}
         {!scrolled && (
           <div className="md:hidden">
             <button onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -112,7 +147,7 @@ export default function Navbar() {
           </div>
         )}
 
-        {/* Mobile Dropdown */}
+        {/* ===== Mobile Dropdown ===== */}
         {open && (
           <div className="absolute top-16 right-0 w-48 bg-white shadow-md z-40 md:hidden rounded-lg overflow-hidden">
             <ul className="flex flex-col items-center gap-4 py-4 text-gray-800 font-medium">
@@ -134,8 +169,6 @@ export default function Navbar() {
           </div>
         )}
       </nav>
-
-      {/* Optional: remove extra CSS hover since we control via React */}
     </header>
   );
 }
