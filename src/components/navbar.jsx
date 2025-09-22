@@ -198,44 +198,66 @@ export default function Navbar() {
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed top-0 left-0 w-full h-screen bg-white z-[999] flex flex-col justify-between p-8"
+            className="fixed top-0 left-0 w-full h-screen z-[999] flex"
           >
-            {/* Close Button */}
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute top-6 right-6 text-3xl font-bold"
-              aria-label="Close menu"
-            >
-              ✕
-            </button>
+            {/* ===== Left Section: Links & Socials (40% width) ===== */}
+            <div className="w-[40%] bg-[#FD2E35] text-white flex flex-col justify-center px-[15%] relative">
 
-            {/* Navigation Links */}
-            <ul className="flex flex-col items-center justify-center flex-1 gap-8 text-2xl font-semibold text-gray-800">
-              {links.map((link) => (
-                <li key={link.id}>
-                  <a
-                    href={`#${link.id}`}
-                    onClick={() => {
-                      setOpen(false);
-                      setActiveLink(link.id);
-                    }}
-                    className="hover:text-[#FD2E35] transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+              {/* Vertical Navigation Links */}
+              <ul className="flex flex-col gap-6 text-2xl font-semibold">
+                {links.map((link) => (
+                  <li key={link.id}>
+                    <a
+                      href={`#${link.id}`}
+                      onClick={() => {
+                        setOpen(false);
+                        setActiveLink(link.id);
+                      }}
+                      className="hover:underline transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
 
-            {/* Let’s Talk Section */}
-            <div className="text-center pb-8">
-              <a
-                href="#contact"
+              {/* Horizontal Social Icons at bottom */}
+              <div className="flex gap-6 mt-6">
+                <a href="#" aria-label="Twitter" className="hover:opacity-80">
+                  <img src="/icons/twitter.svg" alt="Twitter" className="h-6 w-6" />
+                </a>
+                <a href="#" aria-label="LinkedIn" className="hover:opacity-80">
+                  <img src="/icons/linkedin.svg" alt="LinkedIn" className="h-6 w-6" />
+                </a>
+                <a href="#" aria-label="Dribbble" className="hover:opacity-80">
+                  <img src="/icons/dribbble.svg" alt="Dribbble" className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+
+            
+            {/* ===== Right Section: Heading & Button (60% width) ===== */}
+            <div className="w-[60%] bg-[#221429] text-white flex flex-col justify-center px-[5%] relative">
+              {/* Close Button */}
+              <button
                 onClick={() => setOpen(false)}
-                className="inline-block px-6 py-3 bg-[#FD2E35] text-white rounded-full font-medium hover:bg-[#e0292f] transition"
+                className="absolute top-6 right-6 text-3xl font-bold"
+                style={{ position: "absolute", top: "4rem", right: "13rem" }}
+                aria-label="Close menu" 
               >
-                Let’s Talk
-              </a>
+                ✕
+              </button>
+
+              <p className="text-sm font-medium mb-2">Thinkin’ Things?</p>
+              <h1 className="text-3xl md:text-4xl font-bold leading-snug mb-6">
+                In it for doodles, quirky ideas, <br /> and fun design chats.
+              </h1>
+
+              {/* Action Button */}
+              <button
+                className="px-6 py-3 bg-[#FD2E35] text-white font-semibold hover:bg-[#e0292f] transition">
+                Schedule a Call
+              </button>
             </div>
           </motion.div>
         )}
