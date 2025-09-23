@@ -1,13 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   font-family: "Manrope", sans-serif;
-  font-weight: 400;
   overflow-x: hidden;
   color: #221429;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
+
+@layer base {
+  body {
+    @apply font-manrope;
+  }
+}
+
+@layer components {
+  /* === Desktop === */
+  .h1-title   { @apply text-h1 font-bold; }
+  .h2-title   { @apply text-h2 font-bold; }
+  .h3-title   { @apply text-h3 font-semibold; }
+  .h4-title   { @apply text-h4 font-bold; }
+  .p-body     { @apply text-p font-normal; }
+  .nav-link   { @apply text-nav font-normal; }
+
+  /* === Mobile === */
+  .mh1-title  { @apply text-mh1 font-bold; }
+  .mh2-title  { @apply text-mh2 font-bold; }
+  .mh3-title  { @apply text-mh3 font-bold; }
+  .mh4-title  { @apply text-mh4 font-bold; }
+  .mh4xs-title{ @apply text-mh4xs font-bold; }
+
+  /* Specials */
+  .h1-caps    { @apply text-nav font-semibold uppercase; }
+  .about-text { @apply text-nav font-normal; }
+}
+
