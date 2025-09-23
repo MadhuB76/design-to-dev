@@ -1,73 +1,131 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function OverlayMenu({ open, onClose, links, setActiveLink }) {
+export default function OverlayMenu({ open, onClose, links, setActiveLink, hamburgerPos }) {
+  const [showCross, setShowCross] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Detect mobile/tablet
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      const timer = setTimeout(() => setShowCross(true), 500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowCross(false);
+    }
+  }, [open]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setShowCross(false);
+    setTimeout(() => {
+      setIsClosing(false);
+      onClose();
+    },);
+  };
+
   return (
     <AnimatePresence>
-      {open && (
-        <motion.div
-          key="overlay"
-          initial={{ y: "-100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed top-0 left-0 w-full h-screen z-[999] flex flex-col md:flex-row"
-        >
-          {/* ===== Left Section: Links & Socials ===== */}
-          <div
-            className="md:w-[50%] w-full md:h-full h-[60%]
-                        bg-[#FD2E35] text-white flex flex-col justify-center
-                        px-[10%] py-12 md:px-[15%] md:py-0"
-            >
-            {/* Centered Links */}
-            <ul className="flex flex-col items-start justify-center gap-6 md:gap-6 flex-grow whitespace-nowrap">
-              {links.map((link) => (
-                <li key={link.id} className="relative group">
-                  <a
-                    href={`#${link.id}`}
-                    onClick={() => {
-                      setActiveLink(link.id);
-                      onClose();
-                    }}
-                    className="relative h3-title font-bold transition-colors duration-200"
-                  >
-                    {link.label}
-                    <span
-                      className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-white
-                                transition-all duration-300 group-hover:w-full"
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
-            </div>
-
-          {/* ===== Right Section: Heading & Button ===== */}
-          <div
-            className="md:w-[50%] w-full md:h-full h-[40%]
-                       bg-[#221429] text-white flex flex-col justify-center
-                       px-[8%] relative"
-          >
+      {(open || isClosing) && (
+        <>
+          {showCross && (
             <button
-              onClick={onClose}
+              onClick={handleClose}
               aria-label="Close menu"
-              className="absolute top-6 right-6 text-3xl font-bold"
+              className="fixed text-2xl font-bold z-[10000] text-white transition"
+              style={{
+                top: (isMobile ? 20 : hamburgerPos.top - 6), // small offset above the hamburger
+                left: isMobile ? "auto" : hamburgerPos.left,
+                right: isMobile ? 24 : "auto",
+              }}
             >
               ✕
             </button>
+          )}
 
-            <p className="nav-link font-medium mb-2">Thinkin’ Things?</p>
+          <motion.div
+            key="overlay"
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="fixed top-0 left-0 w-full h-screen z-[999] flex flex-col md:flex-row"
+          >
+            {/* ===== Left Section: Links & Socials ===== */}
+            <div
+              className="md:w-1/2 w-full h-1/2 md:h-full
+                         bg-[#FD2E35] text-white flex flex-col justify-center items-center
+                         px-10 py-12 md:px-16 md:py-0"
+            >
+              <div className="flex flex-col items-center justify-center gap-6 md:gap-6">
+                <ul className="flex flex-col items-center justify-center gap-6 md:gap-6 whitespace-nowrap">
+                  {links.map((link) => (
+                    <li key={link.id} className="relative group w-full text-center">
+                      <a
+                        href={`#${link.id}`}
+                        onClick={() => {
+                          setActiveLink(link.id);
+                          handleClose();
+                        }}
+                        className="relative h3-title md:h2-title font-bold transition-colors duration-200 text-base sm:text-lg md:text-2xl"
+                      >
+                        {link.label}
+                        <span
+                          className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-white
+                                     transition-all duration-300 group-hover:w-full"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
 
-            {/* 🔑 Desktop H2, fallback to H3 on small screens */}
-            <h1 className="h3-title md:h2-title font-bold leading-snug mb-6">
-              In it for doodles, quirky ideas, <br /> and fun design chats.
-            </h1>
+                <div className="flex justify-center items-center gap-4 md:gap-6 mt-4 md:mt-6">
+                  {["Twitter", "LinkedIn", "Dribbble"].map((social) => (
+                    <a
+                      key={social}
+                      href="#"
+                      className="relative group nav-link font-medium text-sm sm:text-base md:text-lg"
+                    >
+                      {social}
+                      <span
+                        className="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-white
+                                   transition-all duration-300 group-hover:w-full"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-            <button className="px-6 py-3 bg-[#FD2E35] text-white font-semibold hover:bg-[#e0292f] transition nav-link">
-              Schedule a Call
-            </button>
-          </div>
-        </motion.div>
+            {/* ===== Right Section: Heading & Button ===== */}
+            <div
+              className="md:w-1/2 w-full h-1/2 md:h-full
+                         bg-[#221429] text-white flex flex-col justify-center
+                         px-6 sm:px-8 md:px-16 py-12"
+            >
+              <p className="nav-link font-medium text-base sm:text-lg md:text-xl mb-2 text-center md:text-left">
+                Thinkin’ Things?
+              </p>
+
+              <h1 className="h3-title md:h2-title font-bold leading-snug mb-6
+                             text-xl sm:text-2xl md:text-4xl text-center md:text-left">
+                In it for doodles, quirky ideas, <br /> and fun design chats.
+              </h1>
+
+              <button className="px-6 py-3 bg-[#FD2E35] text-white font-semibold hover:bg-[#e0292f] transition nav-link self-center md:self-start text-sm sm:text-base md:text-lg">
+                Schedule a Call
+              </button>
+            </div>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
