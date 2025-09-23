@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "../assets/M.svg";
 import Hamburger from "../assets/jam_menu.svg";
 import OverlayMenu from "./overlaymenu";
@@ -8,6 +8,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeLink, setActiveLink] = useState("");
+
+  // New state: track hamburger position
+  const [hamburgerPos, setHamburgerPos] = useState({ top: 0, left: 0 });
+
+  // Refs for all hamburger buttons
+  const staticHamburgerRef = useRef(null);
+  const floatingHamburgerRef = useRef(null);
+  const mobileHamburgerRef = useRef(null);
 
   // Track scroll position for progress ring & navbar state
   useEffect(() => {
@@ -82,7 +90,12 @@ export default function Navbar() {
           {/* Inline Hamburger (shows only when not scrolled) */}
           {!scrolled && (
             <button
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                const rect = staticHamburgerRef.current.getBoundingClientRect();
+                setHamburgerPos({ top: rect.top, left: rect.left });
+                setOpen(!open);
+              }}
+              ref={staticHamburgerRef}
               aria-label="Toggle menu"
               className="ml-6 relative z-10"
             >
@@ -97,7 +110,12 @@ export default function Navbar() {
                          bg-white rounded-full p-3 shadow-lg transition-[right] duration-500 ease-out"
             >
               <button
-                onClick={() => setOpen(!open)}
+                onClick={() => {
+                  const rect = floatingHamburgerRef.current.getBoundingClientRect();
+                  setHamburgerPos({ top: rect.top, left: rect.left });
+                  setOpen(!open);
+                }}
+                ref={floatingHamburgerRef}
                 aria-label="Toggle menu"
                 className="relative z-10"
               >
@@ -137,7 +155,12 @@ export default function Navbar() {
         <div className="md:hidden">
           {!scrolled ? (
             <button
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                const rect = mobileHamburgerRef.current.getBoundingClientRect();
+                setHamburgerPos({ top: rect.top, left: rect.left });
+                setOpen(!open);
+              }}
+              ref={mobileHamburgerRef}
               aria-label="Toggle menu"
               className="relative z-10"
             >
@@ -149,7 +172,12 @@ export default function Navbar() {
                          bg-white rounded-full p-3 shadow-lg transition-all duration-500 ease-out"
             >
               <button
-                onClick={() => setOpen(!open)}
+                onClick={() => {
+                  const rect = mobileHamburgerRef.current.getBoundingClientRect();
+                  setHamburgerPos({ top: rect.top, left: rect.left });
+                  setOpen(!open);
+                }}
+                ref={mobileHamburgerRef}
                 aria-label="Toggle menu"
                 className="relative z-10"
               >
@@ -189,14 +217,22 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ===== Overlay Menu ===== */}    
+      {/* ===== Overlay Menu ===== */}
       <OverlayMenu
         open={open}
         onClose={() => setOpen(false)}
         links={links}
         setActiveLink={setActiveLink}
+        hamburgerPos={
+          scrolled
+            ? floatingHamburgerRef.current
+              ? floatingHamburgerRef.current.getBoundingClientRect()
+              : { top: 0, left: 0 }
+            : staticHamburgerRef.current
+            ? staticHamburgerRef.current.getBoundingClientRect()
+            : { top: 0, left: 0 }
+        }
       />
-
     </header>
   );
 }
