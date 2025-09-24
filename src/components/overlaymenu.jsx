@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import HoverButtonGroup from "../components/button"; 
+
 
 export default function OverlayMenu({ open, onClose, links, setActiveLink, hamburgerPos }) {
   const [showCross, setShowCross] = useState(false);
@@ -120,10 +122,17 @@ export default function OverlayMenu({ open, onClose, links, setActiveLink, hambu
                 In it for doodles, quirky ideas, <br /> and fun design chats.
               </h1>
 
-              <button className="px-6 py-3 bg-[#FD2E35] text-white font-semibold hover:bg-[#e0292f] transition nav-link self-center md:self-start text-sm sm:text-base md:text-lg">
-                Schedule a Call
-              </button>
-            </div>
+              <div>
+              {/* Inverted usage (white button on dark #221429 bg) */}
+              <section className="bg-[#221429] p-10">
+                <HoverButtonGroup
+                  invert
+                  text="Schedule a call"
+                  onClick={() => console.log("click")}
+                />
+              </section>
+              </div>
+              </div>
           </motion.div>
         </>
       )}
