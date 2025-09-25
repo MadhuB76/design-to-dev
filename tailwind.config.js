@@ -5,6 +5,12 @@ export default {
       fontFamily: {
         manrope: ["Manrope", "sans-serif"], // custom font
       },
+
+      height: {
+        'screen-minus-24': 'calc(100vh - 24vh)',
+        'screen-minus-10': 'calc(100vh - 16vh)',
+      },
+
       fontSize: {
         h1: ["44px", { lineHeight: "auto" }],
         h2: ["38px", { lineHeight: "auto" }],

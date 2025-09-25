@@ -2,34 +2,39 @@ import React from 'react'
 import HoverButtonGroup from '../components/button'
 import profilePic from '../assets/profile.png'
 import MadhuTitle from '../assets/madhu-tittle.svg'
+import AnimatedText from '../components/animatedtext'
+import { motion } from "framer-motion";
 
 export default function Heading() {
   return (
     <div className='relative'>
       {/* ===== Hero Section ===== */}
       <section
-        className='
-          relative
-          flex flex-col
-          justify-between
-          h-screen
-          px-4 md:px-12
-        ' style={{ paddingRight: '0px', paddingLeft: '0px', height: 'calc(100vh - 24vh)'}}>
+        className='relative flex flex-col justify-between px-4 md:px-12 h-screen-minus-10 md:h-screen-minus-24'
+        style={{ paddingRight: '0px', paddingLeft: '0px' }}
+      >
         {/* ===== Desktop Layout ===== */}
         <div className='hidden md:flex flex-col h-full'>
           {/* ===== Content Wrapper (Vertically Centered) ===== */}
-          <div className='flex flex-1 items-center justify-end w-full max-w-xl mx-auto z-20' style={{ marginRight: '0px' }}>
+          <motion.div className='flex flex-1 items-center justify-end w-full max-w-xl mx-auto z-20'
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+           style={{ marginRight: '0px' }}>
             <div className='flex flex-row gap-10 items-end'>
               {/* Headings + Red Line */}
               <div className='flex flex-row gap-2 items-start'>
-                <span className='w-[0.2rem] h-[2.1rem] bg-[#FD2E35]' />
+                <span className='w-1 h-[2.1rem] bg-[#FD2E35]' />
                 <div>
-                  <h1 className='text-xl md:text-3xl sm:text-2xl font-bold text-[#221429] whitespace-nowrap'>
+                 <h1 className='text-xl md:text-3xl sm:text-2xl font-bold text-[#221429] whitespace-nowrap'>
                     <span className='text-[#221429]'>UX/UI Designer</span>
                     <br />
-                    Sometimes <span className='text-[#FD2E35]'>Structured.</span>
+                    Sometimes{" "}
+                    <span className='text-[#FD2E35] inline-block w-[7ch]'>
+                      <AnimatedText />
+                    </span>
                   </h1>
-                  <p className='text-[#221429] text-lg mt-2'>
+                  <p className='text-[#221429] text-xl mt-2'>
                     Designing sense from curious chaos.
                   </p>
                 </div>
@@ -44,28 +49,39 @@ export default function Heading() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* ===== Bottom: Profile + Title Image ===== */}
-          <div className='relative flex justify-between items-end w-full max-w-6xl mx-auto pb-4 md:pb-8 z-0'>
+          <motion.div className='relative flex justify-between items-end w-full max-w-6xl mx-auto pb-4 md:pb-8 z-0'
+          initial={{ x: 0 }}
+          animate={{ x: 0 }} >
             {/* MADHU Title Image (Left Bottom) */}
-            <img
+            <motion.img
               src={MadhuTitle}
               alt='MADHU'
-              className='w-1/3 h-auto object-cover'
+              className='w-2/3 h-auto object-cover'
+              initial={{ x: '30%' }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.75, ease: 'easeOut' }}
             />
 
             {/* Profile Picture (Right Bottom) */}
-            <img
+            <motion.img
               src={profilePic}
               alt="UX/UI Designer Madhu's profile photo"
-              className='w-32 h-32 lg:w-40 lg:h-40 object-cover rounded-full transition-transform duration-300 hover:scale-110'
+              className="w-16 h-16 lg:w-20 lg:h-20 rounded-full transition-transform duration-500 hover:scale-150 origin-bottom-right"
+              initial={{ x: '-30%' }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0, ease: 'easeOut' }}
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* ===== Tablet & Mobile Layout ===== */}
-        <div className="flex md:hidden flex-col h-full justify-between px-4">
+        <motion.div className="flex md:hidden flex-col h-full justify-between items-start"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}>
           {/* Title Image at Top */}
           <div className="w-full">
             <img
@@ -76,8 +92,8 @@ export default function Heading() {
           </div>
 
           {/* Headings */}
-          <div className="flex flex-col gap-2 max-w-full mx-auto z-20">
-            <div className="flex flex-row gap-3 items-start">
+          <div className="flex flex-col gap-2 max-w-full mx-auto z-20 justify-start items-start">
+            <div className="flex flex-row gap-1 items-start">
               {/* Red line */}
               <span className="w-0.5 h-6 bg-[#FD2E35]" />
 
@@ -86,9 +102,9 @@ export default function Heading() {
                 <h1 className="text-xl font-bold text-[#221429] leading-snug">
                   <span className="text-[#221429]">UX/UI Designer</span>
                   <br />
-                  Sometimes <span className="text-[#FD2E35]">Structured.</span>
+                  Sometimes <span className="text-[#FD2E35]"> <AnimatedText /> </span>
                 </h1>
-                <p className="text-[#221429] text-md mt-3">
+                <p className="text-[#221429] text-md mt-1">
                   Designing sense from curious chaos.
                 </p>
               </div>
@@ -96,7 +112,10 @@ export default function Heading() {
           </div>
 
           {/* Bottom: Profile + Mobile Button */}
-          <div className="flex flex-col items-center gap-4 mb-4">
+          <motion.div className="flex flex-row justify-between items-center w-full max-w-full mx-auto pb-4 md:pb-8 z-0"
+          initial={{ y: 50, scale: 0.8 }}
+          animate={{ y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}>
             <img
               src={profilePic}
               alt="UX/UI Designer Madhu's profile photo"
@@ -107,8 +126,8 @@ export default function Heading() {
               arrow="→"
               onClick={() => console.log("Schedule call clicked!")}
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
     </div>
   )
