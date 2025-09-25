@@ -9,7 +9,7 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeLink, setActiveLink] = useState("");
 
-  // New state: track hamburger position
+  // Track hamburger position
   const [hamburgerPos, setHamburgerPos] = useState({ top: 0, left: 0 });
 
   // Refs for all hamburger buttons
@@ -36,9 +36,20 @@ export default function Navbar() {
     { id: "contact", label: "Let’s Talk", special: true },
   ];
 
+  // Helper to get correct hamburger ref for overlay positioning
+  const getHamburgerRef = () => {
+    if (window.innerWidth >= 1024) {
+      // Desktop
+      return scrolled ? floatingHamburgerRef : staticHamburgerRef;
+    } else {
+      // Mobile + Tablet
+      return mobileHamburgerRef;
+    }
+  };
+
   return (
     <header className="w-full">
-      <nav className="flex justify-between items-center py-6 px-6 md:px-[15%] relative">
+      <nav className="flex justify-between items-center py-6 px-6 lg:px-[15%] relative">
         {/* ===== Logo ===== */}
         <a href="/">
           <img
@@ -49,7 +60,7 @@ export default function Navbar() {
         </a>
 
         {/* ===== Desktop Links + Hamburger ===== */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden lg:flex items-center">
           <ul className="flex items-center gap-12 text-[14px] font-medium">
             {links.map((link) => {
               const isActive = activeLink === link.id;
@@ -152,7 +163,7 @@ export default function Navbar() {
         </div>
 
         {/* ===== Mobile/Tablet Hamburger ===== */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           {!scrolled ? (
             <button
               onClick={() => {
@@ -224,12 +235,8 @@ export default function Navbar() {
         links={links}
         setActiveLink={setActiveLink}
         hamburgerPos={
-          scrolled
-            ? floatingHamburgerRef.current
-              ? floatingHamburgerRef.current.getBoundingClientRect()
-              : { top: 0, left: 0 }
-            : staticHamburgerRef.current
-            ? staticHamburgerRef.current.getBoundingClientRect()
+          getHamburgerRef() && getHamburgerRef().current
+            ? getHamburgerRef().current.getBoundingClientRect()
             : { top: 0, left: 0 }
         }
       />

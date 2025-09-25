@@ -110,29 +110,34 @@ export default function OverlayMenu({ open, onClose, links, setActiveLink, hambu
             {/* ===== Right Section: Heading & Button ===== */}
             <div
               className="md:w-1/2 w-full h-1/2 md:h-full
-                         bg-[#221429] text-white flex flex-col justify-center
-                         px-6 sm:px-8 md:px-16 py-12"
+                        bg-[#221429] text-white
+                        flex flex-col justify-center
+                        items-center lg:items-start  /* center <1024px | left ≥1024px */
+                        px-6 sm:px-8 md:px-16 py-12"
             >
-              <p className="nav-link font-medium text-base sm:text-lg md:text-xl mb-2 text-center md:text-left">
+              <p className="nav-link font-medium text-base sm:text-lg md:text-xl mb-2 
+                            text-center lg:text-left">
                 Thinkin’ Things?
               </p>
 
-              <h1 className="h3-title md:h2-title font-bold leading-snug mb-6
-                             text-xl sm:text-2xl md:text-4xl text-center md:text-left">
-                In it for doodles, quirky ideas, <br /> and fun design chats.
+              <h1
+                className="h3-title md:h2-title font-bold leading-snug mb-6
+                          text-xl sm:text-2xl md:text-4xl
+                          text-center lg:text-left
+                          max-w-[20ch]"
+              >
+                In it for doodles, quirky ideas, and fun design chats.
               </h1>
 
-              <div>
               {/* Inverted usage (white button on dark #221429 bg) */}
-              <section className="bg-[#221429] p-10">
+              <section className="bg-[#221429]">
                 <HoverButtonGroup
                   invert
                   text="Schedule a call"
                   onClick={() => console.log("click")}
                 />
               </section>
-              </div>
-              </div>
+            </div>
           </motion.div>
         </>
       )}
