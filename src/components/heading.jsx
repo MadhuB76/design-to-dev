@@ -1,6 +1,7 @@
 import React from 'react'
 import HoverButtonGroup from '../components/button'
-import profilePic from '../assets/profile.png'
+import profilePic from '../assets/picsvg.svg'
+// import profilePic from '../assets/Profile.svg'
 import MadhuTitle from '../assets/madhu-tittle.svg'
 import AnimatedText from '../components/animatedtext'
 import { motion } from "framer-motion";
@@ -69,10 +70,11 @@ export default function Heading() {
             <motion.img
               src={profilePic}
               alt="UX/UI Designer Madhu's profile photo"
-              className="w-16 h-16 lg:w-20 lg:h-20 rounded-full transition-transform duration-500 hover:scale-150 origin-bottom-right"
+              className="w-16 h-16 lg:w-20 lg:h-20 rounded-full origin-bottom-right filter grayscale-[40%]"
               initial={{ x: '-30%' }}
               animate={{ x: 0 }}
-              transition={{ duration: 0, ease: 'easeOut' }}
+              whileHover={{ scale: 1.7, transition: { duration: 0.5 } }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
             />
           </motion.div>
         </div>
@@ -119,7 +121,7 @@ export default function Heading() {
             <img
               src={profilePic}
               alt="UX/UI Designer Madhu's profile photo"
-              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-full"
+              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-full filter grayscale"
             />
             <HoverButtonGroup
               text="Schedule a call"
