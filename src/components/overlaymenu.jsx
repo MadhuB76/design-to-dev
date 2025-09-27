@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import HoverButtonGroup from "../components/button"; 
+import HoverButtonGroup from "../components/button";
 
-
-export default function OverlayMenu({ open, onClose, links, setActiveLink, hamburgerPos }) {
+export default function OverlayMenu({
+  open,
+  onClose,
+  links,
+  setActiveLink,
+  hamburgerPos,
+}) {
   const [showCross, setShowCross] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -31,7 +36,7 @@ export default function OverlayMenu({ open, onClose, links, setActiveLink, hambu
     setTimeout(() => {
       setIsClosing(false);
       onClose();
-    },);
+    });
   };
 
   return (
@@ -44,7 +49,7 @@ export default function OverlayMenu({ open, onClose, links, setActiveLink, hambu
               aria-label="Close menu"
               className="fixed text-2xl font-bold z-[10000] text-white transition"
               style={{
-                top: (isMobile ? 20 : hamburgerPos.top - 6), // small offset above the hamburger
+                top: isMobile ? 20 : hamburgerPos.top - 6, // small offset above the hamburger
                 left: isMobile ? "auto" : hamburgerPos.left,
                 right: isMobile ? 24 : "auto",
               }}
@@ -70,7 +75,10 @@ export default function OverlayMenu({ open, onClose, links, setActiveLink, hambu
               <div className="flex flex-col items-center justify-center gap-6 md:gap-6">
                 <ul className="flex flex-col items-center justify-center gap-6 md:gap-6 whitespace-nowrap">
                   {links.map((link) => (
-                    <li key={link.id} className="relative group w-full text-center">
+                    <li
+                      key={link.id}
+                      className="relative group w-full text-center"
+                    >
                       <a
                         href={`#${link.id}`}
                         onClick={() => {
@@ -89,17 +97,37 @@ export default function OverlayMenu({ open, onClose, links, setActiveLink, hambu
                   ))}
                 </ul>
 
+                {/* ===== Social Links ===== */}
                 <div className="flex justify-center items-center gap-4 md:gap-6 mt-4 md:mt-6">
-                  {["Twitter", "LinkedIn", "Dribbble"].map((social) => (
+                  {[
+                    {
+                      name: "LinkedIn",
+                      url: "https://www.instagram.com/madhu.bavireddy/",
+                    },
+                    {
+                      name: "Instagram",
+                      url: "https://www.instagram.com/madhu.bavireddy/",
+                    },
+                    {
+                      name: "Twitter",
+                      url: "https://x.com/BavireddyM34094",
+                    },
+                    {
+                      name: "Behance",
+                      url: "https://www.behance.net/MadhuBavireddy76",
+                    },
+                  ].map((social) => (
                     <a
-                      key={social}
-                      href="#"
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="relative group nav-link font-medium text-sm sm:text-base md:text-lg"
                     >
-                      {social}
+                      {social.name}
                       <span
                         className="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-white
-                                   transition-all duration-300 group-hover:w-full"
+                   transition-all duration-300 group-hover:w-full"
                       />
                     </a>
                   ))}
@@ -115,8 +143,10 @@ export default function OverlayMenu({ open, onClose, links, setActiveLink, hambu
                         items-center lg:items-start  /* center <1024px | left ≥1024px */
                         px-6 sm:px-8 md:px-16 py-12"
             >
-              <p className="nav-link font-medium text-base sm:text-lg md:text-xl mb-2 
-                            text-center lg:text-left">
+              <p
+                className="nav-link font-medium text-base sm:text-lg md:text-xl mb-2 
+                            text-center lg:text-left"
+              >
                 Thinkin’ Things?
               </p>
 

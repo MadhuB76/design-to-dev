@@ -7,11 +7,9 @@ export default function AboutSection() {
   return (
     <section
       className="
-        relative w-full text-center 
+        relative w-full text-center
         min-h-screen
-        flex flex-col md:flex-row
-        justify-center items-center
-        px-6 md:px-12 lg:px-20
+        flex flex-col justify-center items-center
         pt-[64px] pb-[64px]
       "
     >
@@ -38,87 +36,77 @@ export default function AboutSection() {
         </div>
 
         {/* ===== Right : Content ===== */}
-        <div className="order-1 md:order-2 w-full md:w-2/3 flex flex-col justify-center ">
-          {/* ABOUT Heading */}
-          <motion.div
-            className="relative max-w-3xl mx-auto md:mx-0"
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }} // 👈 plays only first time
-            transition={{ duration: 1, ease: "easeOut", delay: 0 }}
-          >
-            <p className="absolute -top-6 lg:-top-0 left-0 text-sm md:text-base font-semibold uppercase text-gray-700 z-20">
-              [ABOUT]
-            </p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#221429] leading-snug mb-6 relative z-10">
-              <span className="inline-block">Hi,</span>{" "}
-              <span className="inline-block">I’m</span>{" "}
-              <span className="inline-block">Madhu.</span>{" "}
-              <span className="inline-block">I</span>{" "}
-              <span className="inline-block">chase</span> <br />
-              <span className="inline-block">scribbles</span>{" "}
-              <span className="inline-block">across</span>{" "}
-              <span className="inline-block">screens.</span>{" "}
-              <span className="inline-block">Now</span>{" "}
-              <span className="inline-block">I’m</span>{" "}
-              <span className="inline-block">tryna</span>{" "}
-              <span className="inline-block">turn</span>{" "}
-              <span className="inline-block">imagination</span>{" "}
-              <span className="inline-block">into</span>{" "}
-              <span className="inline-block">living</span>{" "}
-              <span className="inline-block">designs.</span>{" "}
-            </h2>
-          </motion.div>
-
-          {/* ===== My Life + Freelance Row ===== */}
-          <div
-            className="
-              flex flex-col md:flex-row md:justify-between
-              gap-8 md:gap-12 mb-8
-            "
-          >
+        <div className="order-1 md:order-2 w-full md:w-2/3 flex flex-col justify-center">
+          <div className="relative max-w-3xl mx-auto md:mx-0">
+            {/* === First Motion Group: ABOUT + Heading === */}
             <motion.div
-              className="w-full md:w-1/2 text-center md:text-left lg:text-left"
               initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0 }}
             >
-              <h3 className="uppercase text-sm font-bold text-[#221429] mb-1">
-                My Life
-              </h3>
-              <p className="text-sm md:text-base text-[#221429]/80 leading-relaxed">
-                I’m born in 2002. I live in India. I’m a guy. I love chaos. I
-                doodle. I hum songs. I lift at the gym. I sip lemon tea. I like
-                glitches. I chase ideas. I read. I’m cool.
+              <p className="absolute -top-6 lg:-top-0 left-0 text-sm md:text-base font-semibold uppercase text-gray-700 z-20">
+                [ABOUT]
               </p>
-            </motion.div>
-
-            <motion.div
-              className="w-full md:w-1/2 text-center md:text-left lg:text-left"
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 1 }}
-            >
-              <h3 className="uppercase text-sm font-bold text-[#221429] mb-1">
-                Freelance
-              </h3>
-              <p className="text-sm md:text-base text-[#221429]/80 leading-relaxed">
-                I took my first client gig when I was 20, and it felt unreal.
-                Then, I kept going. The goal is to build my craft (take care of
-                the people I love).
-              </p>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#221429] leading-snug mb-6 relative z-10">
+                <span className="inline-block">Hi,</span>{" "}
+                <span className="inline-block">I’m</span>{" "}
+                <span className="inline-block">Madhu.</span>{" "}
+                <span className="inline-block">I</span>{" "}
+                <span className="inline-block">chase</span> <br />
+                <span className="inline-block">scribbles</span>{" "}
+                <span className="inline-block">across</span>{" "}
+                <span className="inline-block">screens.</span>{" "}
+                <span className="inline-block">Now</span>{" "}
+                <span className="inline-block">I’m</span>{" "}
+                <span className="inline-block">tryna</span>{" "}
+                <span className="inline-block">turn</span>{" "}
+                <span className="inline-block">imagination</span>{" "}
+                <span className="inline-block">into</span>{" "}
+                <span className="inline-block">living</span>{" "}
+                <span className="inline-block">designs.</span>
+              </h2>
             </motion.div>
           </div>
 
-          {/* ===== Socials + Button ===== */}
+          {/* === Second Motion Group: My Life + Freelance === */}
+          <motion.div
+            className="flex flex-col md:flex-row md:justify-end mb-8"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
+          >
+            {/* Container with 85% width */}
+            <div className="w-[85%] flex flex-col md:flex-row gap-8 md:gap-12 mx-auto md:mx-0">
+              <div className="w-full md:w-1/2 text-center md:text-left lg:text-left">
+                <h3 className="uppercase text-sm font-bold text-[#221429] mb-1">
+                  My Life
+                </h3>
+                <p className="text-sm md:text-base text-[#221429] leading-relaxed">
+                  I’m born in 2002. I live in India. I’m a guy. I love chaos. I
+                  doodle. I hum songs. I lift at the gym. I sip lemon tea. I
+                  like glitches. I chase ideas. I read. I’m cool.
+                </p>
+              </div>
+
+              <div className="w-full md:w-1/2 text-center md:text-left lg:text-left">
+                <h3 className="uppercase text-sm font-bold text-[#221429] mb-1">
+                  Freelance
+                </h3>
+                <p className="text-sm md:text-base text-[#221429] leading-relaxed">
+                  I took my first client gig when I was 20, and it felt unreal.
+                  Then, I kept going. The goal is to build my craft (take care
+                  of the people I love).
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* === Third Motion Group: Socials + Button === */}
           <motion.div
             className="flex flex-col md:flex-row md:justify-end md:items-end gap-0 md:gap-2 lg:gap-4"
             initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 1.5 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 2 }}
           >
             <div className="flex justify-end md:justify-end gap-4">
               <a
@@ -127,18 +115,16 @@ export default function AboutSection() {
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-[#221429] hover:bg-[#FD2E35] hover:text-white transition"
               >
-                <i className="fab fa-instagram"></i>
+                <i className="fab fa-linkedin-in"></i>
               </a>
-
               <a
-                href="https://www.linkedin.com/in/madhu-bavireddy"
+                href="https://www.instagram.com/madhu.bavireddy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-[#221429] hover:bg-[#FD2E35] hover:text-white transition"
               >
-                <i className="fab fa-linkedin-in"></i>
+                <i className="fab fa-instagram"></i>
               </a>
-
               <a
                 href="https://x.com/BavireddyM34094"
                 target="_blank"
@@ -147,7 +133,6 @@ export default function AboutSection() {
               >
                 <i className="fab fa-x-twitter"></i>
               </a>
-
               <a
                 href="https://www.behance.net/MadhuBavireddy76"
                 target="_blank"
