@@ -125,19 +125,45 @@ export default function AboutSection() {
                 href="#"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-[#221429] hover:bg-[#FD2E35] hover:text-white transition"
               >
-                <i className="fab fa-instagram"></i>
+                <i
+                  href="https://www.instagram.com/madhu.bavireddy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fab fa-instagram"
+                ></i>
               </a>
               <a
                 href="#"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-[#221429] hover:bg-[#FD2E35] hover:text-white transition"
               >
-                <i className="fab fa-linkedin-in"></i>
+                <i
+                  href="www.linkedin.com/in/madhu-bavireddy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fab fa-linkedin-in"
+                ></i>
               </a>
               <a
                 href="#"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-[#221429] hover:bg-[#FD2E35] hover:text-white transition"
               >
-                <i className="fab fa-x-twitter"></i>
+                <i
+                  href="https://x.com/BavireddyM34094"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fab fa-x-twitter"
+                ></i>
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-[#221429] hover:bg-[#FD2E35] hover:text-white transition"
+              >
+                <i
+                  href="https://www.behance.net/MadhuBavireddy76"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fab fa-behance"
+                ></i>
               </a>
             </div>
             <div className="flex justify-end md:justify-end">
