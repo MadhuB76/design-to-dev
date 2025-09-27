@@ -2,15 +2,16 @@ import React from "react";
 import Heading from "../components/heading";
 import MeDoodle from "../assets/medoodle.svg";
 import AboutSection from "../components/about";
-import HoverButtonGroup from "../components/button";
+import LetsConnect from "../components/letsconnect";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
     <div className="home-page bg-[#F7F4F2] min-h-screen flex flex-col items-center justify-center">
+      {/* Hero Section  */}
       <div className="px-6 md:px-[15%] lg:px-[15%] w-full">
         <Heading />
       </div>
-
       {/* Quirky Superpowers Section */}
       <div
         className="relative w-full bg-[#FD2E35] text-center min-h-screen 
@@ -45,10 +46,14 @@ export default function Home() {
           </p>
         </div>
       </div>
-
+      {/* About */}
       <div className="px-6 md:px-[15%]  min-h-screen lg:px-[15%] w-full">
         <AboutSection />
       </div>
+      {/* Let's Connect */}
+      <LetsConnect />
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

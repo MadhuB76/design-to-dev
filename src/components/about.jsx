@@ -7,8 +7,11 @@ export default function AboutSection() {
   return (
     <section
       className="
-        relative w-full text-center
-        flex flex-col justify-center items-center
+        relative w-full text-center 
+        min-h-screen
+        flex flex-col md:flex-row
+        justify-center items-center
+        px-6 md:px-12 lg:px-20
         pt-[64px] pb-[64px]
       "
     >

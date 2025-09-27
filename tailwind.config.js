@@ -3,7 +3,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        manrope: ["Manrope", "sans-serif"], // custom font
+        manrope: ["Manrope", "sans-serif"],
       },
 
       height: {
