@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/M.svg";
 import Hamburger from "../assets/jam_menu.svg";
 import OverlayMenu from "./overlaymenu";
@@ -16,6 +17,14 @@ export default function Navbar() {
   const staticHamburgerRef = useRef(null);
   const floatingHamburgerRef = useRef(null);
   const mobileHamburgerRef = useRef(null);
+
+  const location = useLocation();
+
+  // Update active link on route change
+  useEffect(() => {
+    const path = location.pathname.replace("/", "") || "home";
+    setActiveLink(path);
+  }, [location]);
 
   // Track scroll position for progress ring & navbar state
   useEffect(() => {
@@ -47,17 +56,26 @@ export default function Navbar() {
     }
   };
 
+  // Click handler for hamburger buttons
+  const handleHamburgerClick = (ref) => {
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      setHamburgerPos({ top: rect.top, left: rect.left });
+      setOpen(!open);
+    }
+  };
+
   return (
     <header className="w-full">
       <nav className="flex justify-between items-center py-6 px-6 lg:px-[15%] relative">
         {/* ===== Logo ===== */}
-        <a href="/">
+        <Link to="/">
           <img
             src={logo}
             alt="Logo"
             className="h-8 w-auto sm:h-10 md:h-12 lg:h-14"
           />
-        </a>
+        </Link>
 
         {/* ===== Desktop Links + Hamburger ===== */}
         <div className="hidden lg:flex items-center">
@@ -67,8 +85,8 @@ export default function Navbar() {
               const isSpecial = link.special;
               return (
                 <li key={link.id} className="relative group">
-                  <a
-                    href={`#${link.id}`}
+                  <Link
+                    to={`/${link.id}`}
                     onClick={() => setActiveLink(link.id)}
                     className={`relative transition-colors duration-200
                       ${isSpecial ? "text-[#FD2E35]" : "text-[#221429]"}
@@ -80,7 +98,11 @@ export default function Navbar() {
                       className={`
                         absolute bottom-[-5px] left-0 h-[2px] rounded-full
                         transition-all duration-300
-                        ${isSpecial ? "bg-[#FD2E35] w-[50%] group-hover:w-full" : ""}
+                        ${
+                          isSpecial
+                            ? "bg-[#FD2E35] w-[50%] group-hover:w-full"
+                            : ""
+                        }
                         ${
                           !isSpecial && isActive
                             ? "bg-[#221429] w-[50%] group-hover:w-full group-hover:bg-[#FD2E35]"
@@ -92,7 +114,7 @@ export default function Navbar() {
                         width: !isSpecial && !isActive ? "0%" : undefined,
                       }}
                     />
-                  </a>
+                  </Link>
                 </li>
               );
             })}
@@ -101,11 +123,7 @@ export default function Navbar() {
           {/* Inline Hamburger (shows only when not scrolled) */}
           {!scrolled && (
             <button
-              onClick={() => {
-                const rect = staticHamburgerRef.current.getBoundingClientRect();
-                setHamburgerPos({ top: rect.top, left: rect.left });
-                setOpen(!open);
-              }}
+              onClick={() => handleHamburgerClick(staticHamburgerRef)}
               ref={staticHamburgerRef}
               aria-label="Toggle menu"
               className="ml-6 relative z-10"
@@ -121,11 +139,7 @@ export default function Navbar() {
                          bg-white rounded-full p-3 shadow-lg transition-[right] duration-500 ease-out"
             >
               <button
-                onClick={() => {
-                  const rect = floatingHamburgerRef.current.getBoundingClientRect();
-                  setHamburgerPos({ top: rect.top, left: rect.left });
-                  setOpen(!open);
-                }}
+                onClick={() => handleHamburgerClick(floatingHamburgerRef)}
                 ref={floatingHamburgerRef}
                 aria-label="Toggle menu"
                 className="relative z-10"
@@ -133,7 +147,10 @@ export default function Navbar() {
                 <img src={Hamburger} alt="Menu" className="h-6 w-6" />
               </button>
 
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 36 36">
+              <svg
+                className="absolute inset-0 w-full h-full"
+                viewBox="0 0 36 36"
+              >
                 <circle
                   cx="18"
                   cy="18"
@@ -166,11 +183,7 @@ export default function Navbar() {
         <div className="lg:hidden">
           {!scrolled ? (
             <button
-              onClick={() => {
-                const rect = mobileHamburgerRef.current.getBoundingClientRect();
-                setHamburgerPos({ top: rect.top, left: rect.left });
-                setOpen(!open);
-              }}
+              onClick={() => handleHamburgerClick(mobileHamburgerRef)}
               ref={mobileHamburgerRef}
               aria-label="Toggle menu"
               className="relative z-10"
@@ -183,11 +196,7 @@ export default function Navbar() {
                          bg-white rounded-full p-3 shadow-lg transition-all duration-500 ease-out"
             >
               <button
-                onClick={() => {
-                  const rect = mobileHamburgerRef.current.getBoundingClientRect();
-                  setHamburgerPos({ top: rect.top, left: rect.left });
-                  setOpen(!open);
-                }}
+                onClick={() => handleHamburgerClick(mobileHamburgerRef)}
                 ref={mobileHamburgerRef}
                 aria-label="Toggle menu"
                 className="relative z-10"
