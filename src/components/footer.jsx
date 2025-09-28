@@ -60,12 +60,12 @@ export default function Footer() {
       </div>
 
       {/* Tagline */}
-      <p className="text-[#FD2E35] text-xm md:text-xl">
+      <p className="text-[#FD2E35] text-sm md:text-base">
         let’s create amazing designs together!
       </p>
 
       {/* Copyright */}
-      <p className="text-[#221429] text-base md:text-lg">© 2025</p>
+      <p className="text-[#221429] text-xs md:text-sm">© 2025</p>
     </footer>
   );
 }

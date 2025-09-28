@@ -1,11 +1,18 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import HoverButtonGroup from "../components/button";
 // import aboutVideo from "../assets/about-video.mp4";
 
 export default function AboutSection() {
+  // Ref for the whole section
+  const sectionRef = useRef(null);
+
+  // Check if section is in view (only triggers once)
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
   return (
     <section
+      ref={sectionRef}
       className="
         relative w-full text-center
         min-h-screen
@@ -41,8 +48,8 @@ export default function AboutSection() {
             {/* === First Motion Group: ABOUT + Heading === */}
             <motion.div
               initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <p className="absolute -top-6 lg:-top-0 left-0 text-sm md:text-base font-semibold uppercase text-gray-700 z-20">
                 [ABOUT]
@@ -72,10 +79,9 @@ export default function AboutSection() {
           <motion.div
             className="flex flex-col md:flex-row md:justify-end mb-8"
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 1, ease: "easeOut" }}
           >
-            {/* Container with 85% width */}
             <div className="w-[85%] flex flex-col md:flex-row gap-8 md:gap-12 mx-auto md:mx-0">
               <div className="w-full md:w-1/2 text-center md:text-left lg:text-left">
                 <h3 className="uppercase text-sm font-bold text-[#221429] mb-1">
@@ -105,8 +111,8 @@ export default function AboutSection() {
           <motion.div
             className="flex flex-col md:flex-row md:justify-end md:items-end gap-0 md:gap-2 lg:gap-4"
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 2 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 1.5, ease: "easeOut" }}
           >
             <div className="flex justify-end md:justify-end gap-4">
               <a
