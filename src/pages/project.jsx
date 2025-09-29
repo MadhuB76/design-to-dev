@@ -86,7 +86,7 @@ export default function Projects() {
               alt={p.title}
               className="w-full h-full object-cover
                         transition-transform duration-500 ease-out
-                        hover:scale-95"
+                        hover:scale-90"
             />
             <div className="flex flex-row gap-12 mt-6 max-w-[80%] mx-auto justify-center">
               {/* Small top text – right aligned */}
