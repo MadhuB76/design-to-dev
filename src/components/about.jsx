@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import HoverButtonGroup from "../components/button";
-// import aboutVideo from "../assets/about-video.mp4";
+import aboutVideo from "../assets/Video-me.mp4";
 
 export default function AboutSection() {
   // Ref for the whole section
@@ -33,7 +33,7 @@ export default function AboutSection() {
           <div className="relative w-full max-w-[350px] aspect-[9/16]">
             <video
               className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-md"
-              // src={aboutVideo}
+              src={aboutVideo}
               autoPlay
               muted
               loop

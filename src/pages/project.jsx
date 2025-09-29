@@ -107,7 +107,7 @@ export default function Projects() {
           </div>
         ))}
       </section>
-
+      {/* Footer */}
       <Footer />
     </div>
   );
