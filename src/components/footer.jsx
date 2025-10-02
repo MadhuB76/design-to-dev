@@ -26,7 +26,7 @@ export default function Footer() {
         "
       >
         <a
-          href="www.linkedin.com/in/madhu-bavireddy"
+          href="https://www.linkedin.com/in/madhu-bavireddy/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[#FD2E35] transition-colors"

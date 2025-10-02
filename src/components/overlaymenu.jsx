@@ -99,7 +99,7 @@ export default function OverlayMenu({
                   {[
                     {
                       name: "LinkedIn",
-                      url: "https://www.instagram.com/madhu.bavireddy/",
+                      url: "https://www.linkedin.com/in/madhu-bavireddy/",
                     },
                     {
                       name: "Instagram",
@@ -143,7 +143,12 @@ export default function OverlayMenu({
                 <HoverButtonGroup
                   invert
                   text="Schedule a call"
-                  onClick={() => console.log("click")}
+                  onClick={() =>
+                    window.open(
+                      "https://calendar.app.google/qgCwaipDxXGuf68r8",
+                      "_blank"
+                    )
+                  }
                 />
               </section>
             </div>

@@ -116,7 +116,7 @@ export default function AboutSection() {
           >
             <div className="flex justify-end md:justify-end gap-4">
               <a
-                href="https://www.instagram.com/madhu.bavireddy/"
+                href="https://www.linkedin.com/in/madhu-bavireddy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-[#221429] hover:bg-[#FD2E35] hover:text-white transition"
@@ -152,7 +152,12 @@ export default function AboutSection() {
               <HoverButtonGroup
                 text="Schedule a call"
                 arrow="→"
-                onClick={() => console.log("Schedule call clicked!")}
+                onClick={() =>
+                  window.open(
+                    "https://calendar.app.google/qgCwaipDxXGuf68r8",
+                    "_blank"
+                  )
+                }
               />
             </div>
           </motion.div>

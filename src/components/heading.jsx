@@ -48,7 +48,12 @@ export default function Heading() {
                 <HoverButtonGroup
                   text="Schedule a call"
                   arrow="→"
-                  onClick={() => console.log("Schedule call clicked!")}
+                  onClick={() =>
+                    window.open(
+                      "https://calendar.app.google/qgCwaipDxXGuf68r8",
+                      "_blank"
+                    )
+                  }
                 />
               </div>
             </div>
@@ -138,7 +143,12 @@ export default function Heading() {
             <HoverButtonGroup
               text="Schedule a call"
               arrow="→"
-              onClick={() => console.log("Schedule call clicked!")}
+              onClick={() =>
+                window.open(
+                  "https://calendar.app.google/qgCwaipDxXGuf68r8",
+                  "_blank"
+                )
+              }
             />
           </motion.div>
         </motion.div>

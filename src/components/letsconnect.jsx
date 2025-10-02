@@ -31,7 +31,12 @@ export default function LetsConnect() {
         <HoverButtonGroup
           invert
           text="Schedule a call"
-          onClick={() => console.log("click")}
+          onClick={() =>
+            window.open(
+              "https://calendar.app.google/qgCwaipDxXGuf68r8",
+              "_blank"
+            )
+          }
         />
       </section>
     </section>
