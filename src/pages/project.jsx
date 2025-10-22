@@ -1,39 +1,43 @@
 // pages/Projects.jsx
 import React from "react";
 import RightImage from "../assets/Projects!.svg";
-import ProjectImg from "../assets/project-demo.jpg";
+// import ProjectImg from "../assets/project-demo.jpg";
+import xlr8ProjectImg from "../assets/XLR8.jpg";
+import STM from "../assets/STM.jpg";
 import Footer from "../components/footer";
 
 export default function Projects() {
   const projects = [
     {
       id: 1,
-      small: "A peek into how small ideas grew into experiences",
-      title: "Designs That Spark New Stories",
-      desc: "A peek into how small ideas grew into experiences that people actually enjoy using.",
-      img: ProjectImg,
+      small: "Where passion for speed meets design precision",
+      title: "XLR8 — The Pulse of Motorsport, Reimagined",
+      desc: "A dynamic platform where racing passion meets technology, bringing F1, MotoGP, and automotive culture together in one thrilling experience.",
+      img: xlr8ProjectImg,
+      link: "https://www.behance.net/gallery/236896950/XLR8-Mobile-app",
     },
     {
       id: 2,
-      small: "A peek into how small ideas grew into experiences",
-      title: "Designs That Spark New Stories",
-      desc: "A peek into how small ideas grew into experiences that people actually enjoy using.",
-      img: ProjectImg,
+      small: "Where simplicity meets practicality in digital dining",
+      title: "Supertuff Menus — A Fresh Way to Order",
+      desc: "A seamless digital dining solution that makes viewing and ordering from restaurant menus effortless and instant.",
+      img: STM,
+      link: "https://supertuffmenus.com/",
     },
-    {
-      id: 3,
-      small: "A peek into how small ideas grew into experiences",
-      title: "Designs That Spark New Stories",
-      desc: "A peek into how small ideas grew into experiences that people actually enjoy using.",
-      img: ProjectImg,
-    },
-    {
-      id: 4,
-      small: "A peek into how small ideas grew into experiences",
-      title: "Designs That Spark New Stories",
-      desc: "A peek into how small ideas grew into experiences that people actually enjoy using.",
-      img: ProjectImg,
-    },
+    // {
+    //   id: 3,
+    //   small: "A peek into how small ideas grew into experiences",
+    //   title: "Designs That Spark New Stories",
+    //   desc: "A peek into how small ideas grew into experiences that people actually enjoy using.",
+    //   img: ProjectImg,
+    // },
+    // {
+    //   id: 4,
+    //   small: "A peek into how small ideas grew into experiences",
+    //   title: "Designs That Spark New Stories",
+    //   desc: "A peek into how small ideas grew into experiences that people actually enjoy using.",
+    //   img: ProjectImg,
+    // },
   ];
 
   return (
@@ -81,13 +85,20 @@ export default function Projects() {
         {projects.map((p) => (
           <div key={p.id} className="w-full">
             {/* Big full-width image */}
-            <img
-              src={p.img}
-              alt={p.title}
-              className="w-full h-full object-cover
-                        transition-transform duration-500 ease-out
-                        hover:scale-90"
-            />
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full"
+            >
+              <img
+                src={p.img}
+                alt={p.title}
+                className="w-full h-full object-cover
+              transition-transform duration-500 ease-out
+              hover:scale-90"
+              />
+            </a>
             <div className="flex flex-row gap-12 mt-6 max-w-[80%] mx-auto justify-center">
               {/* Small top text – right aligned */}
               <p className="text-sm md:text-base text-[#221429]/70 mt-3 text-right">
