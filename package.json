@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://madhub76.github.io/design-to-dev/",
+  "homepage": "www.madhu.live",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/line-clamp": "^0.4.4",
