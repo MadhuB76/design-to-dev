@@ -1,5 +1,6 @@
 // pages/Process.jsx
 import React from "react";
+import { motion } from "framer-motion";
 import LetsConnect from "../components/letsconnect";
 import Footer from "../components/footer";
 import StrategyImage from "../assets/Research.svg";
@@ -21,6 +22,17 @@ export default function Process() {
   // Reduced padding significantly to ensure instant transition.
   // We'll use a small value (like 5rem) to account for any browser/layout discrepancies.
   const rightPaddingClass = "md:pb-20"; // pb-20 is 5rem
+
+  // ---- motion variants (minimal & safe) ----
+  const stepVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+  const itemHoverTransition = { type: "spring", stiffness: 160, damping: 16 };
 
   return (
     <div className="flex flex-col w-full bg-[#F7F4F2]">
@@ -54,10 +66,16 @@ export default function Process() {
       {/* ---------------- Process ---------------- */}
       <section className="relative w-full flex flex-col justify-center px-4 sm:px-6 md:px-[15%] lg:px-[15%] max-w-[90%] mt-20 mb-20">
         {/* Step-1: Strategy */}
-        <div
+        <motion.div
           // REMOVED mb-4. Now sections abut each other.
           className="relative flex flex-col md:flex-row w-full max-w-[1200px] 
                      px-2 sm:px-4 md:px-0 gap-6 sm:gap-8 md:gap-10"
+          variants={stepVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.18 }}
+          whileHover={{ translateY: -12 }}
+          transition={itemHoverTransition}
         >
           {/* Left Sticky Part: top-0 for immediate transition */}
           <div className={leftStickyClasses}>
@@ -77,44 +95,89 @@ export default function Process() {
             <div className="flex flex-col gap-6">
               <p className="text-sm text-gray-500">Flow</p>
               <div className="flex flex-col gap-4">
-                <div>
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">1. Define Problem’s</h3>
                   <p className="text-gray-700">
                     Aligning objectives with user needs. Meaningful questions
                     from the start solves design.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">2. Research</h3>
                   <p className="text-gray-700">
                     Gather insights, uncover patterns, behavior, expectations,
                     and pain points.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">3. Scenarios</h3>
                   <p className="text-gray-700">
                     Create realistic contexts, visualize how users interact with
                     the product in real-life contexts.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">4. Strategize</h3>
                   <p className="text-gray-700">
                     Translate findings into clear opportunities for design.
                     Guide the user experience moving forward.
                   </p>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Step-2: Research */}
-        <div
+        <motion.div
           // REMOVED mb-4
           className="relative flex flex-col md:flex-row w-full max-w-[1200px] 
                      px-2 sm:px-4 md:px-0 gap-6 sm:gap-8 md:gap-10"
+          variants={stepVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.18 }}
+          whileHover={{ translateY: -12 }}
+          transition={itemHoverTransition}
         >
           {/* Left Sticky Part: top-0 for immediate transition */}
           <div className={leftStickyClasses}>
@@ -134,15 +197,34 @@ export default function Process() {
             <div className="flex flex-col gap-6">
               <p className="text-sm text-gray-500">Flow</p>
               <div className="flex flex-col gap-4">
-                <div>
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">1. Design Language</h3>
                   <p className="text-gray-700">
                     Consistent visual identity, typography, color schemes, and
                     hierarchy. Recognizable and engaging look across the
                     product.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">
                     2. Sketch & Wireframe
                   </h3>
@@ -150,32 +232,58 @@ export default function Process() {
                     Quick low-fidelity sketches to explore possibilities.
                     Setting the foundation for structure and layout ideas.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">3. Layout</h3>
                   <p className="text-gray-700">
                     Organize elements. Clarity, readability, and balance. guides
                     the user’s smoothly through the interface.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">4. Interface</h3>
                   <p className="text-gray-700">
                     Translating wireframes into interfaces. Ensure every element
                     feels natural to interact with. Shape the final look and
                     feel.
                   </p>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Step-3: Execution */}
-        <div
+        <motion.div
           // REMOVED mb-4
           className="relative flex flex-col md:flex-row w-full max-w-[1200px] 
                      px-2 sm:px-4 md:px-0 gap-6 sm:gap-8 md:gap-10"
+          variants={stepVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.18 }}
+          whileHover={{ translateY: -12 }}
+          transition={itemHoverTransition}
         >
           {/* Left Sticky Part: top-0 for immediate transition */}
           <div className={leftStickyClasses}>
@@ -195,21 +303,50 @@ export default function Process() {
             <div className="flex flex-col gap-6">
               <p className="text-sm text-gray-500">Flow</p>
               <div className="flex flex-col gap-4">
-                <div>
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">1. Prototype</h3>
                   <p className="text-gray-700">
                     Develop mid or high-fidelity prototypes for realistic
                     testing. Bring ideas closer to the final experience.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">2. Flow Checks</h3>
                   <p className="text-gray-700">
                     Define journeys and map interaction points. Ensures the
                     product feels logical and smooth to navigate.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">
                     3. Interaction Design
                   </h3>
@@ -218,18 +355,28 @@ export default function Process() {
                     micro-interactions. Making experiences engaging and
                     effortless.
                   </p>
-                </div>
-                <div>
+                </motion.div>
+
+                <motion.div
+                  className=""
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ scale: 1.02, translateY: -6 }}
+                  whileFocus={{ scale: 1.02, translateY: -6 }}
+                  tabIndex={0}
+                >
                   <h3 className="font-semibold text-lg">4. Test & Iterate</h3>
                   <p className="text-gray-700">
                     Collect feedback through usability testing and refine
                     designs.
                   </p>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Let's Connect */}

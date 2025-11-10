@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import HoverButtonGroup from "../components/button";
-import aboutVideo from "../assets/Video-me.mp4";
+import aboutVideo from "../assets/Video_ME.mp4";
 
 export default function AboutSection() {
   // Ref for the whole section
