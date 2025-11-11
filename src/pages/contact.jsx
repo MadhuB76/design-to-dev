@@ -166,7 +166,15 @@ export default function Contact() {
                 placeholder="Secret Hotline"
                 className={inputClass}
                 value={formData.phone}
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    phone: e.target.value.replace(/\D/g, ""),
+                  })
+                }
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={15}
               />
             </div>
 

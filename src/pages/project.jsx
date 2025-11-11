@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import RightImage from "../assets/Projects!.svg";
-import xlr8ProjectImg from "../assets/XLR8.jpg";
-import STM from "../assets/STM.jpg";
+import xlr8ProjectImg from "../assets/XLR8.webp";
+import STM from "../assets/STM.webp";
 import Footer from "../components/footer";
 
 export default function Projects() {
@@ -25,7 +25,7 @@ export default function Projects() {
     },
   ];
 
-  // Interactive card: enters by moving up, and responds on mouse enter with a stronger upward motion.
+  // Interactive card: enters by moving up, and responds to mouse movement with subtle parallax.
   function InteractiveCard({ project }) {
     const ref = useRef(null);
 
@@ -72,8 +72,6 @@ export default function Projects() {
           <motion.div
             className="relative transform-gpu will-change-transform"
             style={{ x: translateX, y: translateY }}
-            // on hover: lift the whole card up and scale slightly
-            whileHover={{ y: -14, scale: 1.02 }}
             transition={{ type: "spring", stiffness: 180, damping: 14 }}
           >
             <motion.img
@@ -86,9 +84,12 @@ export default function Projects() {
                 translateX: useTransform(mx, [-1, 1], [6, -6]),
                 translateY: useTransform(my, [-1, 1], [6, -6]),
               }}
+              // ONLY image hover: zoom out on hover (no other hover effects)
+              whileHover={{ scale: 0.9 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
             />
 
-            {/* floating info badge (appears on hover) */}
+            {/* floating info badge (appears when hovering the image itself) */}
             <motion.div
               className="absolute left-4 top-4 rounded-md bg-white/90 px-4 py-2 shadow-md backdrop-blur"
               initial={{ opacity: 0, y: -6 }}
@@ -154,7 +155,7 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Right: SVG Image (subtle hover lift) */}
+            {/* Right: SVG Image (subtle hover lift preserved) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}

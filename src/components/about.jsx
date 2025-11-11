@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import HoverButtonGroup from "../components/button";
-import aboutVideo from "../assets/Video_ME.mp4";
+// import aboutVideo from "../assets/Video_ME.mp4";
 
 export default function AboutSection() {
   // Ref for the whole section
@@ -31,14 +31,14 @@ export default function AboutSection() {
         {/* ===== Left : Video ===== */}
         <div className="order-6 md:order-1 w-full md:w-1/3 flex justify-center">
           <div className="relative w-full max-w-[350px] aspect-[9/16]">
-            <video
-              className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-md"
-              src={aboutVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
+            <iframe
+              src="https://player.vimeo.com/video/1135665414?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              className="absolute inset-0 w-full h-full rounded-xl shadow-md"
+              title="About Video"
+              loading="lazy"
+            ></iframe>
           </div>
         </div>
 
