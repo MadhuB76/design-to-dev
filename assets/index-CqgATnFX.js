@@ -120,4 +120,4 @@ Please change the parent <Route path="${U}"> to <Route path="${U==="/"?"*":`${U}
         body, a, button, [role="button"], input, textarea, select {
           cursor: none !important;
         }
-      `})]})}function OE(){return v.jsxs(eb,{children:[v.jsx(NE,{}),v.jsx($w,{}),v.jsxs(O2,{children:[v.jsx(li,{path:"/",element:v.jsx(eE,{})}),v.jsx(li,{path:"/projects",element:v.jsx(lE,{})}),v.jsx(li,{path:"/process",element:v.jsx(uE,{})}),v.jsx(li,{path:"/experience",element:v.jsx(hE,{})}),v.jsx(li,{path:"/contact",element:v.jsx(RE,{})})]})]})}qx.createRoot(document.getElementById("root")).render(v.jsx(OE,{}));
+      `})]})}function OE(){return v.jsxs(eb,{children:[v.jsx(NE,{}),v.jsx($w,{}),v.jsxs(O2,{children:[v.jsx(li,{path:"/",element:v.jsx(eE,{})}),v.jsx(li,{path:"/projects",element:v.jsx(lE,{})}),v.jsx(li,{path:"/process",element:v.jsx(uE,{})}),v.jsx(li,{path:"/experience",element:v.jsx(hE,{})}),v.jsx(li,{path:"/contact",element:v.jsx(RE,{})})]})]})}qx.createRoot(document.getElementById("root")).render(v.jsx(Router,{children:v.jsx(OE,{})}));
