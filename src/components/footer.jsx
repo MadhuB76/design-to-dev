@@ -65,7 +65,7 @@ export default function Footer() {
       </p>
 
       {/* Copyright */}
-      <p className="text-[#221429] text-xs md:text-sm">© 2025</p>
+      <p className="text-[#221429] text-xs md:text-sm">© MADHU</p>
     </footer>
   );
 }

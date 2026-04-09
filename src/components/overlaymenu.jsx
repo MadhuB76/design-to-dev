@@ -145,8 +145,8 @@ export default function OverlayMenu({
                   text="Schedule a call"
                   onClick={() =>
                     window.open(
-                      "https://calendar.app.google/qgCwaipDxXGuf68r8",
-                      "_blank"
+                      "https://calendar.app.google/4ctoyvaUetWurVdn8",
+                      "_blank",
                     )
                   }
                 />

@@ -1,6 +1,6 @@
 import React from "react";
 import HoverButtonGroup from "../components/button";
-import profilePic from "../assets/picsvg.svg";
+import profilePic from "../assets/Pic.svg";
 // import profilePic from '../assets/Profile.svg'
 import MadhuTitle from "../assets/madhu-tittle.svg";
 import AnimatedText from "../components/animatedtext";
@@ -50,8 +50,8 @@ export default function Heading() {
                   arrow="→"
                   onClick={() =>
                     window.open(
-                      "https://calendar.app.google/qgCwaipDxXGuf68r8",
-                      "_blank"
+                      "https://calendar.app.google/4ctoyvaUetWurVdn8",
+                      "_blank",
                     )
                   }
                 />
@@ -140,16 +140,18 @@ export default function Heading() {
               alt="UX/UI Designer Madhu's profile photo"
               className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-full filter grayscale"
             />
-            <HoverButtonGroup
-              text="Schedule a call"
-              arrow="→"
-              onClick={() =>
-                window.open(
-                  "https://calendar.app.google/qgCwaipDxXGuf68r8",
-                  "_blank"
-                )
-              }
-            />
+            <div className="flex justify-end md:justify-end">
+              <HoverButtonGroup
+                text="Schedule a call"
+                arrow="→"
+                onClick={() =>
+                  window.open(
+                    "https://calendar.app.google/4ctoyvaUetWurVdn8",
+                    "_blank",
+                  )
+                }
+              />
+            </div>
           </motion.div>
         </motion.div>
       </section>

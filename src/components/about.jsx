@@ -154,8 +154,8 @@ export default function AboutSection() {
                 arrow="→"
                 onClick={() =>
                   window.open(
-                    "https://calendar.app.google/qgCwaipDxXGuf68r8",
-                    "_blank"
+                    "https://calendar.app.google/4ctoyvaUetWurVdn8",
+                    "_blank",
                   )
                 }
               />
