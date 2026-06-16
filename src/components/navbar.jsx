@@ -39,9 +39,9 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { id: "projects", label: "Projects" },
-    { id: "process", label: "Process" },
-    { id: "experience", label: "Experience" },
+    { id: "projects", label: "Case Studies" },
+    // { id: "process", label: "Process" },
+    // { id: "experience", label: "Experience" },
     { id: "contact", label: "Let’s Talk", special: true },
   ];
 
